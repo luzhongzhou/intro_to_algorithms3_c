@@ -11,7 +11,7 @@ struct sub_array *find_max_crossing_subarray(int *a, int low, int mid, int high)
 {
 	int i;
 	int i_left = mid;
-	long sum_left = 0, 
+	long sum_left = 0;
 	long tmp = 0;
 	for(i = mid; i >= low; i--){
 		tmp += a[i];
