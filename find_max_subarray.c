@@ -10,18 +10,20 @@ struct sub_array{
 struct sub_array *find_max_crossing_subarray(int *a, int low, int mid, int high)
 {
 	int i;
-	int i_left = mid, i_right = mid;
-	long sum_left = a[mid], sum_right = a[mid];
-	long tmp = a[mid];
-
-	for(i = mid-1; i >= low; i--){
+	int i_left = mid;
+	long sum_left = 0, 
+	long tmp = 0;
+	for(i = mid; i >= low; i--){
 		tmp += a[i];
-		if( tmp > sum_left){
+		if(sum_left < tmp){
 			sum_left = tmp;
 			i_left = i;			
 		}
 	}
-	tmp = a[mid];
+	
+	int i_right = mid;
+	long sum_right = 0;
+	tmp = 0;
 	for(i = mid+1; i <= high; i++){
 		tmp += a[i];
 		if(sum_right < tmp){
@@ -33,7 +35,7 @@ struct sub_array *find_max_crossing_subarray(int *a, int low, int mid, int high)
 	struct sub_array *ptr = (struct sub_array *)malloc(sizeof(struct sub_array));
 	ptr->low = i_left;
 	ptr->high = i_right;
-	ptr->sum = sum_left + sum_right - a[mid];		
+	ptr->sum = sum_left + sum_right;		
 	
 	return ptr;
 }
